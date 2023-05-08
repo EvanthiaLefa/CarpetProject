@@ -7,7 +7,6 @@ const fetchData = async () => {
     console.log(err);
   }
 }
-
 const handleData = data => {
   const row = document.querySelector('.row');
   data.forEach(user => {
@@ -24,25 +23,13 @@ const handleData = data => {
         </div>
       `;
     row.appendChild(card);
-  });
+ });
 }
 fetchData()
   .then(handleData)
   .catch(error => {
     console.error(error);
-  });
-
-//d-flex align-items-center flex-column 
-// <ul class="list-group list-group-flush">
-// <li class="list-group-item">email: ${user.email}</li>
-// </ul>
-// ul -> 
-
-
-// NA GRAPSO SXOLIA
-
-
-
+});
 
 const formEl = document.querySelector('form');
 
