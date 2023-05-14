@@ -37,8 +37,10 @@ fetchData()
 
 const formEl = document.querySelector('form');
 
+//Retrieves the values from form input fields / Uses the fetch API to send a POST request 
+//to local server running at http://localhost:3004/users, containing the values of the two input fields in JSON format. 
 function handleSubmit(event) {
-  event.preventDefault();
+  event.preventDefault();  //prevent the page from refresh.
   const firstName = formEl.querySelector('#floatingFirstName');
   const valueName = firstName.value;
   console.log(valueName);
@@ -48,7 +50,7 @@ function handleSubmit(event) {
 
   fetch('http://localhost:3004/users', {
     method: 'POST',
-    headers: {
+    headers: { //specify that the server should expect and send JSON data.
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
@@ -58,4 +60,5 @@ function handleSubmit(event) {
     })
   })
 }
+//an event listener on a form element that is triggered when the form is submitted
 formEl.addEventListener('submit', handleSubmit);
