@@ -1,0 +1,11 @@
+INSERT INTO state (id, state) VALUES (1,'East Macedonia & Thrace');
+INSERT INTO state (id, state) VALUES (2,'Central Macedonia');
+INSERT INTO state (id, state) VALUES (3,'Western Macedonia');
+INSERT INTO state (id, state) VALUES (4,'Thessaly');
+INSERT INTO state (id, state) VALUES (5,'Epirus');
+INSERT INTO state (id, state) VALUES (6,'Central Greece');
+INSERT INTO state (id, state) VALUES (7,'Attica');
+INSERT INTO state (id, state) VALUES (10,'Peloponnese');
+INSERT INTO state (id, state) VALUES (11,'Crete');
+INSERT INTO state (id, state) VALUES (12,'Ionian Islands');
+INSERT INTO state (id, state) VALUES (13,'North Aegean');
