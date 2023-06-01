@@ -1,4 +1,0 @@
-1. Install Node.js on your computer.
-2.Open a terminal and go to the directory where the db.json is located.
-3. Install the required dependencies by running the command    "npm install"    in the terminal. This will download and install the json-server package and any other dependencies listed in the package.json file.
-4. Run the command    "npx json-server -w db.json -p 3004"    in the terminal to start the JSON server. This assumes that your database file is named "db.json" and that the server should listen on port 3004. 
