@@ -61,7 +61,6 @@ fetch('http://localhost:8080/api/city') // Fetch city data
 
 
 //Retrieves the values from form input fields / Uses the fetch API to send a PUT request
-//to local server running at http://localhost:3004/users/{id}, containing the values of the two input fields in JSON format.
 function handleUpdate(event) {
   const urlParams = new URLSearchParams(window.location.search); //The window.location.search property contains the query string portion of the current URL.
   const id = urlParams.get("id"); //This retrieves the value of the "id" query parameter from the urlParams object using the get() method.
