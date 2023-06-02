@@ -13,7 +13,7 @@ const fetchData = async () => {
     const row = document.querySelector('.row');
     jsonData.forEach(contact => {
       const card = document.createElement('div');
-      card.className = 'col-sm-6 mt-2';
+      card.className = 'col-sm-12 col-md-12 col-lg-6 mt-2';
       card.innerHTML = `
           <div class="card" id=${contact.id}>
             <div class="card-body">

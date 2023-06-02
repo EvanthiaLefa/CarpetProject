@@ -10,9 +10,9 @@ function fetchDataAndDisplay() {
       const infoPageRow = document.querySelector(".infoPageRow");
       // Create HTML elements to display the data
       const ul = document.createElement("ul");
-      ul.className = "list-group list-group align-items-center";
+      ul.className = "list-group list-group align-items-center row";
       ul.innerHTML = `
-        <li class="list-group-item d-flex justify-content-between" style="width: 35rem;">
+        <li class="list-group-item d-flex justify-content-between " style="width: 35rem;">
           <div class="ms-2 me-auto">
             <div class="fw-bold">Name:</div>
             ${data.firstName}

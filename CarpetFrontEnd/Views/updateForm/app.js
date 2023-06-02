@@ -15,15 +15,15 @@ fetch(`http://localhost:8080/api/contacts/${id}`)
     <label for="floatingLastName">Last Name</label>
   </div>
   <div class="form-floating">
-    <input type="tel" class="form-control" id="floatingInputEmail" placeholder="Phone" value=${data.phoneNumber}>
+    <input type="tel" class="form-control" id="floatingPhone" placeholder="Phone" value=${data.phoneNumber}>
     <label for="floatingInputEmail">Phone</label>
   </div>
   <div class="form-floating">
-    <input type="email" class="form-control" id="floatingPhone" placeholder="name@example.com" value="${data.email}">
+    <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com" value="${data.email}">
     <label for="floatingPhone">Email</label>
   </div>
   <div class="form-floating">
-    <input type="text" class="form-control" id="floatingPassword" placeholder="Address" value="${data.streetAddress}">
+    <input type="text" class="form-control" id="floatingAddress" placeholder="Address" value="${data.streetAddress}">
     <label for="floatingPhone">Address</label>
   </div>
   <div class="form-floating">
@@ -33,11 +33,8 @@ fetch(`http://localhost:8080/api/contacts/${id}`)
   <select class="form-select city"  aria-label="Default select example">
   <option value="${data.city.id}" selected>${data.city.city}</option>
   </select>
-  <select class="form-select" aria-label="Default select example">
+  <select class="form-select state" aria-label="Default select example">
     <option value="${data.state.id}" selected>${data.state.state}</option>
-    <option value="${data.state.id}">${data.state.state}</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
   </select>
   <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">update contact</button>
   `;
@@ -49,9 +46,25 @@ fetch('http://localhost:8080/api/city') // Fetch city data
   const citySelect = document.querySelector('.city');
   cityData.forEach(city => {
     const option = document.createElement('option');
-    option.value = city.city.id;
-    option.textContent = city.city.city;
+    option.value = city.id;
+    option.textContent = city.city;
     citySelect.appendChild(option);
+  });
+})
+.catch(error => {
+  console.error(error);
+  // Handle errors
+});
+
+fetch('http://localhost:8080/api/state') // Fetch city data
+.then(response => response.json())
+.then(stateData => {
+  const stateSelect = document.querySelector('.state');
+  stateData.forEach(state => {
+    const option = document.createElement('option');
+    option.value = state.id;
+    option.textContent = state.state;
+    stateSelect.appendChild(option);
   });
 })
 .catch(error => {
@@ -61,16 +74,29 @@ fetch('http://localhost:8080/api/city') // Fetch city data
 
 
 //Retrieves the values from form input fields / Uses the fetch API to send a PUT request
-//to local server running at http://localhost:3004/users/{id}, containing the values of the two input fields in JSON format.
 function handleUpdate(event) {
   const urlParams = new URLSearchParams(window.location.search); //The window.location.search property contains the query string portion of the current URL.
   const id = urlParams.get("id"); //This retrieves the value of the "id" query parameter from the urlParams object using the get() method.
 
   event.preventDefault(); //prevent the page from refresh.
-  const firstName = form.querySelector("#floatingFirstName");
-  const valueName = firstName.value;
-  const email = form.querySelector("#floatingInputEmail");
-  const valueEmail = email.value;
+  const firstName = form.querySelector("#floatingFirstName").value;
+  const email = form.querySelector("#floatingInputEmail").value;
+  const lastName = form.querySelector("#floatingLastName").value;
+  const phoneNumber = form.querySelector("#floatingPhone").value;
+  const streetAddress = form.querySelector("#floatingAddress").value;
+  const postalCode = form.querySelector("#floatingZipCode").value;
+
+  const cityId = form.querySelector(".city").value;
+  const citySelect = form.querySelector(".city");
+  const selectedOption = citySelect.querySelector(`option[value="${cityId}"]`);
+  const cityName = selectedOption.textContent;
+
+  const stateId = form.querySelector(".state").value;
+  const stateSelect = form.querySelector(".state");
+  const stateSelectedOption = stateSelect.querySelector(`option[value="${stateId}"]`);
+  const stateName = stateSelectedOption.textContent;
+ 
+
 
   fetch(`http://localhost:8080/api/contacts/${id}`, {
     method: "PUT",
@@ -80,12 +106,23 @@ function handleUpdate(event) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      name: valueName,
-      email: valueEmail,
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        email: email,
+        streetAddress: streetAddress,
+        postalCode: postalCode,
+        city: {
+            id: cityId,
+            city: cityName
+        },
+        state: {
+            id: stateId,
+            state: stateName
+        },
     }),
   })
-    .then((response) => response.json())
-    .then((data) => (element.innerHTML = data.updatedAt));
+  
 }
 //an event listener on a form element that is triggered when the form is submitted
 form.addEventListener("submit", handleUpdate);
