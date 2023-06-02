@@ -1,4 +1,4 @@
-//uses the fetch API to retrieve data from a local server running at http://localhost:3004/users 
+//uses the fetch API to retrieve data from an api 
 const fetchData = async () => {
     try {
       const response = await fetch('http://localhost:8080/api/contacts');

@@ -34,7 +34,10 @@ fetch('http://localhost:8080/api/state') // Fetch city data
 });
 
 //Retrieves the values from form input fields / Uses the fetch API to send a POST request 
+<<<<<<< HEAD
 //at http://localhost:8080/api/contacts, containing the values of the input fields in JSON format. 
+=======
+>>>>>>> 3c1c6a361d3e3d6efaa08bf4b209b594510ee17d
 function handleSubmit(event) {
   event.preventDefault();  //prevent the page from refresh.
   const firstName = form.querySelector("#floatingFirstName").value;
