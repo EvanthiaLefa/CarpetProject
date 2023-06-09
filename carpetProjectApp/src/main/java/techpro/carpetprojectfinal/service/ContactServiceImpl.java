@@ -11,6 +11,7 @@ import java.util.List;
 
 //Service to access database through dao object
 @Service
+
 public class ContactServiceImpl implements ContactService{
 
     private ContactDao contactDao;

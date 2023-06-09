@@ -56,7 +56,7 @@ function handleSubmit(event) {
 
   fetch('http://localhost:8080/api/contacts', {
     method: 'POST',
-    headers: { //specify that the server should expect and send JSON data.
+    headers: { //specify that the fetch should expect and send JSON data.
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },

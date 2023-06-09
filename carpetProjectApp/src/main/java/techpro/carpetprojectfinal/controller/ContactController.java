@@ -3,10 +3,14 @@ package techpro.carpetprojectfinal.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import techpro.carpetprojectfinal.dao.CityDao;
 import techpro.carpetprojectfinal.dao.ContactDaoImpl;
+import techpro.carpetprojectfinal.dao.StateDao;
 import techpro.carpetprojectfinal.entity.Contact;
+import techpro.carpetprojectfinal.mapper.CityDTO;
 import techpro.carpetprojectfinal.mapper.ContactDTO;
 import techpro.carpetprojectfinal.mapper.DTOMapping;
+import techpro.carpetprojectfinal.mapper.StateDTO;
 import techpro.carpetprojectfinal.service.ContactServiceImpl;
 
 
@@ -15,17 +19,24 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://127.0.0.1:5500" , methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}, allowedHeaders = "Content-Type")
 public class ContactController {
 
     private ContactServiceImpl contactServiceImpl;
     private DTOMapping dtoMapping;
     private ContactDaoImpl contactDaoImpl;
 
+    private CityDao  cityDao;
+
+    private StateDao stateDao;
+
     @Autowired
-    public ContactController(ContactServiceImpl contactServiceImpl, DTOMapping dtoMapping, ContactDaoImpl contactDaoImpl) {
+    public ContactController(ContactServiceImpl contactServiceImpl, DTOMapping dtoMapping, ContactDaoImpl contactDaoImpl, CityDao cityDao , StateDao stateDao) {
         this.contactDaoImpl = contactDaoImpl;
         this.contactServiceImpl = contactServiceImpl;
         this.dtoMapping = dtoMapping;
+        this.cityDao = cityDao;
+        this.stateDao = stateDao;
     }
 
     // Get All Contacts
@@ -43,6 +54,7 @@ public class ContactController {
     //Add new contact
     @PostMapping("/contacts")
     public ContactDTO addContact(@RequestBody ContactDTO theContactDTO) {
+        System.out.println(theContactDTO);
         Contact entity = dtoMapping.toContact(theContactDTO);
         Contact savedContact = contactServiceImpl.save(entity);
 
@@ -51,7 +63,7 @@ public class ContactController {
 
 
     //Update
-    @PutMapping("/contacts")
+    @PutMapping("/contacts/{contactId}")
     public ContactDTO updateContact(@RequestBody ContactDTO contactDto){
         Contact dbContact=contactServiceImpl.findById(contactDto.getId());
         dtoMapping.updateEntity(dbContact,contactDto);
@@ -67,6 +79,15 @@ public class ContactController {
         contactServiceImpl.deleteBy(contactId);
         System.out.println("Delete contact " + contactId);
 
+    }
+
+    @GetMapping("/city")
+    public List<CityDTO> getCities() {
+        return cityDao.findAllCities().stream().map(dtoMapping::toCityDTO).collect(Collectors.toList());
+    }
+    @GetMapping("/state")
+    public List<StateDTO> getStates() {
+        return stateDao.findAllStates().stream().map(dtoMapping::toStateDTO).collect(Collectors.toList());
     }
 
 

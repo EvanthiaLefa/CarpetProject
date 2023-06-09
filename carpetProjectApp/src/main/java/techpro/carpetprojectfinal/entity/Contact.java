@@ -25,10 +25,10 @@ public class Contact {
     @Column(name="postal_code")
     private long postalCode;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     private City city;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     private State state;
 
 

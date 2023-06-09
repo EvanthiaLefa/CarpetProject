@@ -1,4 +1,4 @@
-//uses the fetch API to retrieve data from a local server running at http://localhost:3004/users 
+//uses the fetch API to retrieve data from an api running at http://localhost:8080/api/contacts 
 const fetchData = async () => {
     try {
       const response = await fetch('http://localhost:8080/api/contacts');
@@ -8,7 +8,7 @@ const fetchData = async () => {
       console.log(err);
     }
   }
-  //hat takes the retrieved JSON data as input and generates a Bootstrap card for each contact in the data.
+  //the method takes the retrieved JSON data as input and generates a Bootstrap card for each contact in the data.
   const handleData = jsonData => {
     const row = document.querySelector('.row');
     jsonData.forEach(contact => {
@@ -36,8 +36,7 @@ const fetchData = async () => {
     });
 
     /**
- *  This code sets up an event listener on the .row element for a click event. When the deleteBtn is clicked within a card element,
- *  the corresponding card is deleted from the DOM and from the server using a DELETE request.
+ *  This code sets up an event listener on the .row element for a click event. When the deleteBtn is clicked a request is sending in http://localhost:8080/api/contacts/${id} with  DELETE method.
  */
 
 const row = document.querySelector(".row");

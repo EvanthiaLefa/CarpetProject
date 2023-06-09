@@ -54,12 +54,14 @@ public class DTOMapping {
     public City toCity(CityDTO cityDTO){
         City city=new City();
         city.setCity(cityDTO.getCity());
+        city.setId(cityDTO.getId());
         return city;
     }
 
     public State toState(StateDTO stateDTO){
         State state=new State();
         state.setState(stateDTO.getState());
+        state.setId(stateDTO.getId());
         return state;
     }
 
