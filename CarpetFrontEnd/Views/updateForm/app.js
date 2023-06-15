@@ -39,16 +39,6 @@ fetch(`http://localhost:8080/api/contacts/${id}`)
   <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">update contact</button>
   `;
 })
-//  (async () =>{
-//  let response = await fetch('http://localhost:8080/api/city') // Fetch city data
-//  let cityData = response.json();
-//  const citySelect = document.querySelector('.city');
-//   cityData.forEach(city => {
-//     const option = document.createElement('option');
-//     option.value = city.id;
-//     option.textContent = city.city;
-//     citySelect.appendChild(option);
-//   })})();
 
 fetch('http://localhost:8080/api/city') // Fetch city data
 .then(response => response.json())
@@ -83,10 +73,11 @@ fetch('http://localhost:8080/api/state') // Fetch state data
 
 //Retrieves the values from form input fields / Uses the fetch API to send a PUT request
 function handleUpdate(event) {
-  const urlParams = new URLSearchParams(window.location.search); //The window.location.search property contains the query string portion of the current URL.
-  const id = urlParams.get("id"); //This retrieves the value of the "id" query parameter from the urlParams object using the get() method.
-
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("id");
+  
   event.preventDefault(); //prevent the page from refresh.
+  
   const firstName = form.querySelector("#floatingFirstName").value;
   const email = form.querySelector("#floatingInputEmail").value;
   const lastName = form.querySelector("#floatingLastName").value;
