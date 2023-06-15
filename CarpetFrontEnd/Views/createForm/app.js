@@ -17,7 +17,7 @@ fetch('http://localhost:8080/api/city') // Fetch city data
   // Handle errors
 });
 
-fetch('http://localhost:8080/api/state') // Fetch city data
+fetch('http://localhost:8080/api/state') // Fetch state data
 .then(response => response.json())
 .then(stateData => {
   const stateSelect = document.querySelector('.state');
