@@ -50,13 +50,12 @@ row.addEventListener("click", (event) => {
     })
       .then((response) => {
         console.log(response)
-        // Process the response or perform additional actions
       })
       .catch((error) => {
-        // Handle any errors that occurred during the request
         console.log(error)
       });
   }
+  window.location.reload();
 });
 
 const contactPageRow = document.querySelector(".contactPageRow");

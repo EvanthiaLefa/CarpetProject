@@ -39,7 +39,17 @@ fetch(`http://localhost:8080/api/contacts/${id}`)
   <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">update contact</button>
   `;
 })
- //this isn't working yet
+//  (async () =>{
+//  let response = await fetch('http://localhost:8080/api/city') // Fetch city data
+//  let cityData = response.json();
+//  const citySelect = document.querySelector('.city');
+//   cityData.forEach(city => {
+//     const option = document.createElement('option');
+//     option.value = city.id;
+//     option.textContent = city.city;
+//     citySelect.appendChild(option);
+//   })})();
+
 fetch('http://localhost:8080/api/city') // Fetch city data
 .then(response => response.json())
 .then(cityData => {
@@ -53,10 +63,9 @@ fetch('http://localhost:8080/api/city') // Fetch city data
 })
 .catch(error => {
   console.error(error);
-  // Handle errors
 });
 
-fetch('http://localhost:8080/api/state') // Fetch city data
+fetch('http://localhost:8080/api/state') // Fetch state data
 .then(response => response.json())
 .then(stateData => {
   const stateSelect = document.querySelector('.state');
@@ -69,7 +78,6 @@ fetch('http://localhost:8080/api/state') // Fetch city data
 })
 .catch(error => {
   console.error(error);
-  // Handle errors
 });
 
 
@@ -102,10 +110,11 @@ function handleUpdate(event) {
     method: "PUT",
     headers: {
       //specify that the server should expect and send JSON data.
-      Accept: "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+        id:id,
         firstName: firstName,
         lastName: lastName,
         phoneNumber: phoneNumber,
